@@ -1,18 +1,12 @@
-try:
-    fhand = open("mailbox.txt")
-except:
-    print('File cannot be opened')
-    exit()
-
+fhand = open("mailbox.txt")
 
 lines=fhand.readlines()
-file=open('output.txt', 'w')
+fhand=open('output.txt', 'w')
+
 for line in lines:
-       if 'JAMES SMTP' in line:
-           ind=line.find('SMTP ID ')
-           en_ind=line.find(';')
-           word=line[ind+8:en_ind]
-           print(word)
-           file.write(word)
-           file.write('\n')
+   if 'SMTP ID' in line:
+      print(line[68:-1])
+      fhand.write(line[68:-1])
+      fhand.write('\n')
+fhand.close()
 fhand.close()
